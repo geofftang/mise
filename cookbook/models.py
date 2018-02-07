@@ -11,3 +11,17 @@ class Recipe(models.Model):
     def __str__(self):
         """Return a string representation of the model"""
         return self.text
+
+
+class Note(models.Model):
+    """Things to note about the dish or recipe"""
+    recipe = models.ForeignKey(Recipe)
+    text = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        """Return a string representation of the model"""
+        return self.text[:50] + "..."
+
+    # class Meta:
+    #     verbose_name_plural = 'entries'
