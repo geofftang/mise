@@ -25,7 +25,7 @@ SECRET_KEY = '&5e-rt%765)$2%y+!5vd)(--!&job%g3%ntrdvdg-wqna2l%k-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     #My apps
     'cookbook',
+    'users',
 ]
 
 MIDDLEWARE = [
