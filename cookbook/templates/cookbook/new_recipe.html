@@ -1,0 +1,12 @@
+{% extends "cookbook/base.html" %}
+
+{% block content %}
+
+  <p>Add a new topic:</p>
+  <form action="{% url 'cookbook:new_recipe' %}" method='post'>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button name="submit">add topic</button>
+  </form>
+
+{% endblock content %}
