@@ -2,11 +2,11 @@
 
 {% block content %}
 
-  <p>Add a new topic:</p>
+  <p>Add a new recipe:</p>
   <form action="{% url 'cookbook:new_recipe' %}" method='post'>
       {% csrf_token %}
       {{ form.as_p }}
-      <button name="submit">add topic</button>
+      <button name="submit">add recipe</button>
   </form>
 
 {% endblock content %}

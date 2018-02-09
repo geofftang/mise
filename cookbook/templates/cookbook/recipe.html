@@ -5,11 +5,17 @@
   <p>Recipe: {{ recipe }}</p>
 
   <p>Notes: </p>
+  <p>
+    <a href="{% url 'cookbook:new_note' recipe.id %}">add new entry</a>
+  </p>
   <ul>
   {% for note in notes %}
     <li>
-      <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
-      <p>{{ entry.text|linebreaks }}</p>
+      <p>{{ note.date_added|date:'M d, Y H:i' }}</p>
+      <p>{{ note.text|linebreaks }}</p>
+      <p>
+        <a href="{% url 'cookbook:edit_note' note.id %}">edit note</a>
+      </p>
     </li>
   {% empty %}
     <li>
