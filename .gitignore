@@ -1,6 +1,9 @@
 # MacOS files
 *.DS_Store
 
+# Django
+*.sqlite3
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
