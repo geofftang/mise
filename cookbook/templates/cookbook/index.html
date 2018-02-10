@@ -1,7 +1,16 @@
 {% extends "cookbook/base.html" %}
 
+{% block header %}
+    <div class='jumbotron'>
+        <h1>Iterative Recipe Development</h1>
+    </div>
+{% endblock header %}
+
 {% block content %}
 
-<p>Dynamic and Iterative Recipe Creation</p>
+    <h2>
+        <a href="{% url 'users:register' %}"> Register an account</a> to make your own Mise,
+        and start developing those recipes!
+    </h2>
 
 {% endblock content %}

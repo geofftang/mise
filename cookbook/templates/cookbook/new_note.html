@@ -1,14 +1,20 @@
 {% extends "cookbook/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <h2><a href="{% url 'cookbook:recipe' recipe.id %}">{{ recipe }}</a></h2>
+{% endblock header %}
 
 {% block content %}
 
-<p><a href="{% url 'cookbook:recipe' recipe.id %}">{{ recipe }}</a></p>
+    <p>Add a new note:</p>
+    <form action="{% url 'cookbook:new_note' recipe.id %}" method='post' class = "form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
 
-<p>Add a new note:</p>
-<form action="{% url 'cookbook:new_note' recipe.id %}" method='post'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button name='submit'>add note</button>
-</form>
+        {% buttons %}
+            <button name="submit" class="btn btn-primary">add note</button>
+        {% endbuttons %}
+    </form>
 
 {% endblock content %}

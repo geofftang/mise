@@ -1,12 +1,21 @@
 {% extends "cookbook/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+  <h2>Add a new topic:</h2>
+{% endblock header %}
 
 {% block content %}
 
   <p>Add a new recipe:</p>
   <form action="{% url 'cookbook:new_recipe' %}" method='post'>
       {% csrf_token %}
-      {{ form.as_p }}
-      <button name="submit">add recipe</button>
+      {% bootstrap_form form %}
+
+      {% buttons %}
+        <button name="submit" class="btn btn-primary">add topic</button>
+      {% endbuttons %}
+
   </form>
 
 {% endblock content %}

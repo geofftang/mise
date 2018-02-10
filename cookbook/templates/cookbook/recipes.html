@@ -1,19 +1,24 @@
 {% extends "cookbook/base.html" %}
 
-{% block content %}
+{% block header %}
+  <h1>Recipes</h1>
+{% endblock header %}
 
-  <p>Recipes</p>
+{% block content %}
 
   <ul>
     {% for recipe in recipes %}
       <li>
-        <a href="{% url 'cookbook:recipe' recipe.id %}">
-          {{ recipe }}
-        </a>
+        <h3>
+          <a href="{% url 'cookbook:recipe' recipe.id %}">
+            {{ recipe }}
+          </a>
+        </h3>
       </li>
     {% empty %}
       <li>No topics have been added yet.</li>
     {% endfor %}
   </ul>
 
+  <h3><a href="{% url 'cookbook:new_recipe' %}">Add a new recipe</h3>
 {% endblock content %}
