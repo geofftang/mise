@@ -40,7 +40,6 @@ INSTALLED_APPS = [
 
     #Third party apps
     'bootstrap3',
-    'bootstrap4',
     #My apps
     'cookbook',
     'users',
@@ -131,9 +130,6 @@ LOGIN_URL = '/users/login/'
 
 # Settings for django-bootstrap
 BOOTSTRAP3 = {
-    'include_jquery': True,
-}
-BOOTSTRAP4 = {
     'include_jquery': True,
 }
 
