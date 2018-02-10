@@ -143,8 +143,10 @@ if os.getcwd() == '/app':
     # Honor the 'X-Forwarded-Proto' header for request.is_secure().
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-    # Allow all host headers.
-    ALLOWED_HOSTS = ['*']
+    # Allow only Heroku to host the project
+    ALLOWED_HOSTS = ['mise-mise.herokuapp.com']
+
+    DEBUG = False
 
     # Static asset configuration
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -153,6 +155,11 @@ if os.getcwd() == '/app':
         os.path.join(BASE_DIR, 'static'),
     )
 
+    # Versions of Django before 1.10 require MIDDLEWARE_CLASSES, but the
+    # latest version, 1.11.8, had an entirely separate issue with 'flatatt'
+    # an invalid template library so I reverted back to a version of Django
+    # that I knew would work since it was in the Crash Course example, 1.8.4
+    # and used MIDDLEWARE_CLASSES instead of MIDDLEWARE
     MIDDLEWARE_CLASSES = [
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.contrib.auth.middleware.AuthenticationMiddleware',
