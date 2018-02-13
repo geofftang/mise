@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
@@ -31,7 +31,7 @@ def recipes(request):
 @login_required
 def recipe(request, recipe_id):
     """Show a single recipe and all its steps"""
-    recipe = Recipe.objects.get(id=recipe_id)
+    recipe = get_object_or_404(Recipe, id=recipe_id)
     check_recipe_owner(recipe, request)
 
     notes = recipe.note_set.order_by('-date_added')
@@ -63,7 +63,7 @@ def new_recipe(request):
 @login_required
 def new_note(request, recipe_id):
     """Add a new note to a recipe"""
-    recipe = Recipe.objects.get(id=recipe_id)
+    recipe = get_object_or_404(Recipe, id=recipe_id)
 
     if request.method != 'POST':
         # No data submitted; create a blank form
@@ -85,7 +85,7 @@ def new_note(request, recipe_id):
 @login_required
 def edit_note(request, note_id):
     """Edit an existing note"""
-    note = Note.objects.get(id=note_id)
+    note = get_object_or_404(Note, id=recipe_id)
     recipe = note.recipe
     check_recipe_owner(recipe, request)
 
