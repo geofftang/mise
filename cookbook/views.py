@@ -28,6 +28,7 @@ def recipes(request):
     context = {'recipes': recipes}
     return render(request, 'cookbook/recipes.html', context)
 
+
 @login_required
 def recipe(request, recipe_id):
     """Show a single recipe and all its steps"""
@@ -85,7 +86,7 @@ def new_note(request, recipe_id):
 @login_required
 def edit_note(request, note_id):
     """Edit an existing note"""
-    note = get_object_or_404(Note, id=recipe_id)
+    note = get_object_or_404(Note, id=note_id)
     recipe = note.recipe
     check_recipe_owner(recipe, request)
 
