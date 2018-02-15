@@ -1,0 +1,52 @@
+body{
+    background-color: #000;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.bg-overlay {
+    background-color: rgba(34,28,28,.9);
+    width: 100vw;
+    height: 100vh;
+}
+
+.wrapper {
+    font-family: 'Lato-Hairline';
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(40, 1fr);
+    width: 100vw;
+    height: 100vh;
+    max-width:100%;
+    max-height:100%;
+}
+
+.header{
+    grid-column: 6/8;
+    grid-row: 1;
+}
+
+.main{
+    grid-column: 5/9;
+    grid-row: 19;
+    text-align: center;
+
+}
+
+#name{
+    font-size: 150;
+    color: #FFF;
+}
+
+#slogan{
+    font-size: 23;
+    color: rgb(231, 189, 116);
+    letter-spacing: 2px;
+}
+
+@font-face {
+    font-family: 'Lato-Hairline';
+    src: url('/static/cookbook/fonts/Lato-Hairline.ttf');
+}
