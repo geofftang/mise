@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 from django.shortcuts import render, get_object_or_404
-=======
-from django.shortcuts import render
->>>>>>> 022ce368dc776a2f97ea5acb8c0d43bba97d2c66
 from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
@@ -19,10 +15,7 @@ def check_recipe_owner(recipe, request):
         raise Http404
 
 
-<<<<<<< HEAD
 # Create your views here.
-=======
->>>>>>> 022ce368dc776a2f97ea5acb8c0d43bba97d2c66
 def index(request):
     """The home page for mise"""
     return render(request, 'cookbook/index.html')
@@ -39,13 +32,9 @@ def recipes(request):
 @login_required
 def recipe(request, recipe_id):
     """Show a single recipe and all its steps"""
-<<<<<<< HEAD
     recipe = get_object_or_404(Recipe, id=recipe_id)
     check_recipe_owner(recipe, request)
 
-=======
-    recipe = Recipe.objects.get(id=recipe_id)
->>>>>>> 022ce368dc776a2f97ea5acb8c0d43bba97d2c66
     notes = recipe.note_set.order_by('-date_added')
     context = {'recipe': recipe, 'notes': notes}
     return render(request, 'cookbook/recipe.html', context)
@@ -63,15 +52,9 @@ def new_recipe(request):
         # POST data submitted; process data
         form = RecipeForm(request.POST)
         if form.is_valid():
-<<<<<<< HEAD
             new_recipe = form.save(commit=False)
             new_recipe.owner = request.user
             new_recipe.save()
-=======
-            new_topic = form.save(commit=False)
-            new_topic.owner = request.user
-            new_topic.save()
->>>>>>> 022ce368dc776a2f97ea5acb8c0d43bba97d2c66
             return HttpResponseRedirect(reverse('cookbook:recipes'))
 
     context = {'form': form}

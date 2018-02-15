@@ -124,7 +124,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-<<<<<<< HEAD
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # My settings
 LOGIN_URL = '/users/login/'
@@ -170,8 +169,6 @@ if os.getcwd() == '/app':
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
     ]
-=======
 
-#My settings
+# My settings
 LOGIN_URL = '/users/login/'
->>>>>>> 022ce368dc776a2f97ea5acb8c0d43bba97d2c66
