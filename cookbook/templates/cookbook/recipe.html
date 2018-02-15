@@ -1,5 +1,6 @@
 {% extends 'cookbook/base.html' %}
 
+<<<<<<< HEAD
 {% block header %}
   <h2>{{ recipe }}</h2>
 {% endblock header %}
@@ -30,5 +31,24 @@
   {% empty %}
       There are no entries for this post yet.
   {% endfor %}
+=======
+{% block content %}
+
+  <p>Recipe: {{ recipe }}</p>
+
+  <p>Notes: </p>
+  <ul>
+  {% for note in notes %}
+    <li>
+      <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
+      <p>{{ entry.text|linebreaks }}</p>
+    </li>
+  {% empty %}
+    <li>
+      There are no entries for this post yet.
+    </li>
+  {% endfor %}
+  </ul>
+>>>>>>> 022ce368dc776a2f97ea5acb8c0d43bba97d2c66
 
 {% endblock content %}

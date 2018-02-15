@@ -9,11 +9,17 @@
   <ul>
     {% for recipe in recipes %}
       <li>
+<<<<<<< HEAD
         <h3>
           <a href="{% url 'cookbook:recipe' recipe.id %}">
             {{ recipe }}
           </a>
         </h3>
+=======
+        <a href="{% url 'cookbook:recipe' recipe.id %}">
+          {{ recipe }}
+        </a>
+>>>>>>> 022ce368dc776a2f97ea5acb8c0d43bba97d2c66
       </li>
     {% empty %}
       <li>No topics have been added yet.</li>
