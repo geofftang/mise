@@ -1,16 +1,19 @@
-{% extends "cookbook/base.html" %}
+{% load static %}
 
-{% block header %}
-    <div class='jumbotron'>
-        <h1>Iterative Recipe Development</h1>
+<link rel="stylesheet" type="text/css" href="{% static 'cookbook/css/style.css' %}" />
+<body style="background-image: url('{% static "cookbook/img/bg0.jpg" %}')";>
+    <div class="bg-overlay">
+        <div class="wrapper">
+            <div class="header">
+                <a href="{% url 'users:login' %}">LOG IN</a>
+                <a class="padding-right-sm" href="">hi</a>
+                <a class="padding-right-sm" href="">hello</a>
+                <a href="">bye</a>
+            </div>
+            <div class="main">
+                <div id="name"> MISE </div>
+                <div id="slogan"> ITERATIVE RECIPE DEVELOPMENT </div>
+            </div>
+        </div>
     </div>
-{% endblock header %}
-
-{% block content %}
-
-    <h2>
-        <a href="{% url 'users:register' %}"> Register an account</a> to make your own Mise,
-        and start developing those recipes!
-    </h2>
-
-{% endblock content %}
+</body>

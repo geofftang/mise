@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Recipe, Note
 from .forms import RecipeForm, NoteForm
 
-
 # Relevant Functions
+
 
 # Make sure the recipe belongs to the current user
 def check_recipe_owner(recipe, request):
@@ -76,8 +76,8 @@ def new_note(request, recipe_id):
             new_note = form.save(commit=False)
             new_note.recipe = recipe
             new_note.save()
-            return HttpResponseRedirect(reverse('cookbook:recipe',
-                                        args=[recipe_id]))
+            return HttpResponseRedirect(
+                reverse('cookbook:recipe', args=[recipe_id]))
 
     context = {'recipe': recipe, 'form': form}
     return render(request, 'cookbook/new_note.html', context)
@@ -98,8 +98,8 @@ def edit_note(request, note_id):
         form = NoteForm(instance=note, data=request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('cookbook:recipe',
-                                        args=[recipe.id]))
+            return HttpResponseRedirect(
+                reverse('cookbook:recipe', args=[recipe.id]))
 
     context = {'recipe': recipe, 'form': form}
     return render(request, 'cookbook/edit_note.html', context)
