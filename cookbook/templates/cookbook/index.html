@@ -1,14 +1,14 @@
 {% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'cookbook/css/style.css' %}" />
+<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400" rel="stylesheet">
 <body style="background-image: url('{% static "cookbook/img/bg0.jpg" %}')";>
     <div class="bg-overlay">
         <div class="wrapper">
             <div class="header">
+                <a href="{% url 'cookbook:index' %}">MISE</a>
+                <a href="{% url 'cookbook:recipes' %}">RECIPES</a>
                 <a href="{% url 'users:login' %}">LOG IN</a>
-                <a class="padding-right-sm" href="">hi</a>
-                <a class="padding-right-sm" href="">hello</a>
-                <a href="">bye</a>
             </div>
             <div class="main">
                 <div id="name"> MISE </div>
