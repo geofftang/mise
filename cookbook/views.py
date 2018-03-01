@@ -17,8 +17,22 @@ def check_recipe_owner(recipe, request):
 
 # Create your views here.
 def index(request):
-    """The home page for mise"""
+    # If already logged in, redirect to user pages
+    if request.user.is_authenticated():
+        return HttpResponseRedirect(
+            reverse(
+                'cookbook:home_page',
+                kwargs={
+                    'username': request.user.username
+                }))
+    """The landing page for mise"""
     return render(request, 'cookbook/index.html')
+
+
+@login_required
+def home_page(request, username):
+    """Home page for logged in users"""
+    return render(request, 'cookbook/home_page.html')
 
 
 @login_required

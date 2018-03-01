@@ -7,7 +7,8 @@ class Recipe(models.Model):
     """A recipe the user wants to record"""
     text = models.CharField(max_length=200)
     date_added = models.DateTimeField(auto_now_add=True)
-    owner =  models.ForeignKey(User)
+    owner = models.ForeignKey(User)
+
     def __str__(self):
         """Return a string representation of the model"""
         return self.text
@@ -28,3 +29,23 @@ class Note(models.Model):
 
     # class Meta:
     #     verbose_name_plural = 'entries'
+
+
+class Ingredient(models.Model):
+    """Ingredients required for the recipe"""
+    recipe = models.ForeignKey(Recipe)
+    text = models.TextField()
+
+    def __str__(self):
+        """Return a string representation of the model"""
+        return self.text
+
+
+class Step(models.Model):
+    """Cooking steps for the recipe"""
+    recipe = models.ForeignKey(Recipe)
+    text = models.TextField()
+
+    def __str__(self):
+        """Return a string representation of the model"""
+        return self.text

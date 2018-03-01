@@ -1,6 +1,7 @@
 from django import forms
 from .models import Recipe, Note
 
+
 class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
@@ -13,4 +14,4 @@ class NoteForm(forms.ModelForm):
         model = Note
         fields = ['text']
         labels = {'text': ''}
-        widgets = {'text': forms.Textarea(attrs={'cols':80})}
+        widgets = {'text': forms.Textarea(attrs={'cols': 80})}
