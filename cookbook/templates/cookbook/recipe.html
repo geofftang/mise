@@ -1,27 +1,38 @@
 {% extends 'cookbook/base.html' %}
+{% load static %}
 
 {% block header %}
+  <link rel="stylesheet" type="text/css" href="{% static 'cookbook/css/recipe_style.css' %}" />
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400" rel="stylesheet">
   <h2>{{ recipe }}</h2>
 {% endblock header %}
 
 {% block content %}
+
+<div class="section-name">
+    Ingredients
+</div>
+  {% for ingredient in ingredients %}
+    <div id="ingredient">
+      {{ ingredient.text|linebreaks }}
+    </div>
+  {% endfor %}
+
+
+  <div class="section-name">
+    Directions
+  </div>
+  {% for step in steps %}
+  <div id="step">
+    {{ step.text|linebreaks }}
+  </div>
+  {% endfor %}
 
   <p>
     <a href="{% url 'cookbook:new_note' recipe.id %}">add new note</a>
   </p>
 
   {% for note in notes %}
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3>
-          {{ note.date_added|date:'M d, Y H:i' }}
-          <small>
-            <a href="{% url 'cookbook:edit_note' note.id %}">
-              edit note
-            </a>
-          </small>
-        </h3>
-      </div>
       <div class="panel-body">
         {{ note.text|linebreaks }}
       </div>

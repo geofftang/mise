@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 
-from .models import Recipe, Note
+from .models import Recipe, Note, Ingredient, Step
 from .forms import RecipeForm, NoteForm
 
 # Relevant Functions
@@ -50,7 +50,10 @@ def recipe(request, recipe_id):
     check_recipe_owner(recipe, request)
 
     notes = recipe.note_set.order_by('-date_added')
-    context = {'recipe': recipe, 'notes': notes}
+    ingredients = recipe.ingredient_set.order_by('-date_added')
+    steps = recipe.step_set.order_by('-date_added')
+
+    context = {'recipe': recipe, 'notes': notes, 'ingredients': ingredients, 'steps': steps}
     return render(request, 'cookbook/recipe.html', context)
 
 

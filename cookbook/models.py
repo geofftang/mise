@@ -35,6 +35,7 @@ class Ingredient(models.Model):
     """Ingredients required for the recipe"""
     recipe = models.ForeignKey(Recipe)
     text = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         """Return a string representation of the model"""
@@ -45,6 +46,7 @@ class Step(models.Model):
     """Cooking steps for the recipe"""
     recipe = models.ForeignKey(Recipe)
     text = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         """Return a string representation of the model"""
