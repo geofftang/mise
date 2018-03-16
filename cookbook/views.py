@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, Http404
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 from .models import Recipe, Note, Ingredient, Step
@@ -18,7 +18,7 @@ def check_recipe_owner(recipe, request):
 # Create your views here.
 def index(request):
     # If already logged in, redirect to user pages
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         return HttpResponseRedirect(
             reverse(
                 'cookbook:home_page',

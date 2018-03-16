@@ -7,7 +7,7 @@ class Recipe(models.Model):
     """A recipe the user wants to record"""
     text = models.CharField(max_length=200)
     date_added = models.DateTimeField(auto_now_add=True)
-    owner = models.ForeignKey(User)
+    owner = models.ForeignKey(User, models.CASCADE)
 
     def __str__(self):
         """Return a string representation of the model"""
@@ -16,7 +16,7 @@ class Recipe(models.Model):
 
 class Note(models.Model):
     """Things to note about the dish or recipe"""
-    recipe = models.ForeignKey(Recipe)
+    recipe = models.ForeignKey(Recipe, models.CASCADE)
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
 
@@ -33,7 +33,7 @@ class Note(models.Model):
 
 class Ingredient(models.Model):
     """Ingredients required for the recipe"""
-    recipe = models.ForeignKey(Recipe)
+    recipe = models.ForeignKey(Recipe, models.CASCADE)
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
 
@@ -44,7 +44,7 @@ class Ingredient(models.Model):
 
 class Step(models.Model):
     """Cooking steps for the recipe"""
-    recipe = models.ForeignKey(Recipe)
+    recipe = models.ForeignKey(Recipe, models.CASCADE)
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
 
