@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django import forms
 
 from .models import Recipe, Note, Ingredient, Step
 from .forms import RecipeForm, NoteForm
@@ -49,11 +50,16 @@ def recipe(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
     check_recipe_owner(recipe, request)
 
-    notes = recipe.note_set.order_by('-date_added')
+    notes = recipe.note_set.all()
     ingredients = recipe.ingredient_set.order_by('-date_added')
     steps = recipe.step_set.order_by('-date_added')
 
-    context = {'recipe': recipe, 'notes': notes, 'ingredients': ingredients, 'steps': steps}
+    context = {
+        'recipe': recipe,
+        'notes': notes,
+        'ingredients': ingredients,
+        'steps': steps
+    }
     return render(request, 'cookbook/recipe.html', context)
 
 
@@ -101,22 +107,55 @@ def new_note(request, recipe_id):
 
 
 @login_required
-def edit_note(request, note_id):
+def edit_note(request, recipe_id):
     """Edit an existing note"""
-    note = get_object_or_404(Note, id=note_id)
-    recipe = note.recipe
+    recipe = Recipe.objects.get(pk=recipe_id)
+    NoteInlineFormSet = forms.inlineformset_factory(
+        Recipe, Note, fields=('text', ))
     check_recipe_owner(recipe, request)
 
     if request.method != 'POST':
         # Initial request; pre-fill form with the current note
-        form = NoteForm(instance=note)
+        formset = NoteInlineFormSet(instance=recipe)
     else:
         # POST data submitted; process data
-        form = NoteForm(instance=note, data=request.POST)
-        if form.is_valid():
-            form.save()
+        formset = NoteInlineFormSet(
+            request.POST, request.FILES, instance=recipe)
+        if formset.is_valid():
+            formset.save()
             return HttpResponseRedirect(
                 reverse('cookbook:recipe', args=[recipe.id]))
 
-    context = {'recipe': recipe, 'form': form}
+    context = {'recipe': recipe, 'formset': formset}
     return render(request, 'cookbook/edit_note.html', context)
+
+
+# Test development of html forms for editting recipe
+@login_required
+def edit_recipe(request, recipe_id):
+    """Show a single recipe and all its steps"""
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    check_recipe_owner(recipe, request)
+
+    ingredients = recipe.ingredient_set.all()
+    notes = recipe.note_set.order_by('-date_added')
+    steps = recipe.step_set.order_by('-date_added')
+
+    if request.method != 'POST':
+        # Initial request; pre-fill form with the current queryset
+        context = {
+            'recipe': recipe,
+            'notes': notes,
+            'ingredients': ingredients,
+            'steps': steps
+        }
+        return render(request, 'cookbook/edit_recipe.html', context)
+    else:
+        # POST data submitted; process data
+        context = {
+            'recipe': recipe,
+            'notes': notes,
+            'ingredients': ingredients,
+            'steps': steps
+        }
+        return render(request, 'cookbook/edit_recipe.html', context)

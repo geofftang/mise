@@ -1,0 +1,29 @@
+/* Recipe styling */
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.flex-container {
+    display: flex;
+    flex-flow: row;
+}
+
+#steps {
+    width: 300px;
+}
+
+#ingredients {
+    width: 500px;
+}
+
+.section-name {
+    font-size: 50;
+    /* color: rgb(231, 189, 116); */
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('/static/cookbook/fonts/Lato-Hairline.ttf');
+}
+
+

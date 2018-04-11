@@ -1,3 +1,5 @@
+/* Landing page styling */
+
 body{
     background-color: #000;
     background-position: center center;
@@ -13,7 +15,7 @@ body{
 }
 
 .wrapper {
-    font-family: 'Lato-Hairline';
+    font-family: 'Lato', sans-serif;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(40, 1fr);
@@ -24,8 +26,24 @@ body{
 }
 
 .header{
-    grid-column: 6/8;
-    grid-row: 1;
+    grid-column: 5/9;
+    grid-row: 2;
+    font-size: 11px;
+    letter-spacing: .3em;
+    text-align: center;
+    line-height: 1.5em;
+    font-weight: 300px;
+}
+.header a{
+    padding-left: 11px;
+    padding-right: 11px;
+}
+.header a:link, a:visited{
+    color: rgba(140, 140, 140, 0.7);
+    text-decoration: none;
+}
+.header a:hover{
+    color: white;
 }
 
 .main{
@@ -34,19 +52,20 @@ body{
     text-align: center;
 
 }
-
 #name{
     font-size: 150;
     color: #FFF;
+    font-weight: 100;
 }
-
 #slogan{
     font-size: 23;
     color: rgb(231, 189, 116);
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    font-weight: 300;
 }
 
 @font-face {
-    font-family: 'Lato-Hairline';
+    font-family: 'Lato';
     src: url('/static/cookbook/fonts/Lato-Hairline.ttf');
 }
+

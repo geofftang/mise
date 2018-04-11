@@ -16,6 +16,10 @@ urlpatterns = [
     url(r'^new_recipe/$', views.new_recipe, name="new_recipe"),
     # Page for adding a new note
     url(r'^new_note/(?P<recipe_id>\d+)/$', views.new_note, name="new_note"),
-    # Page for adding a new note
-    url(r'^edit_note/(?P<note_id>\d+)/$', views.edit_note, name="edit_note"),
+    # Page for editting a new note
+    url(r'^edit_note/(?P<recipe_id>\d+)/$', views.edit_note, name="edit_note"),
+    # Page for editting recipes
+    url(r'^edit_recipe/(?P<recipe_id>\d+)/$',
+        views.edit_recipe,
+        name="edit_recipe"),
 ]

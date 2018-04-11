@@ -2,37 +2,38 @@
 <link rel="stylesheet" type="text/css" href="{% static 'cookbook/css/recipe_style.css' %}" />
 <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400" rel="stylesheet">
 <h2>{{ recipe }}</h2>
-<a href="{% url 'cookbook:edit_recipe' recipe.id %}">edit recipes</a>
 {% endblock header %} {% block content %}
 
 <div class="section-name">
-  Ingredients
-  <br>
+    Ingredients
+    <br>
 </div>
-{% for ingredient in ingredients %}
-<div id="ingredient">
-  {{ ingredient.text|linebreaks }}
-</div>
-{% endfor %}
+<form action="{% url 'cookbook:edit_recipe' recipe.id %}" method="post" class="form">
+    {% for ingredient in ingredients %} {% csrf_token %}
+    <input type="text" value="{{ ingredient.text }}" name="ingredient">
+    <br> {% endfor %}
+    <input type="submit" class="btn btn-primary" value="Submit">
+</form>
+
 
 
 <div class="section-name">
-  Directions
+    Directions
 </div>
 {% for step in steps %}
 <div id="step">
-  {{ step.text|linebreaks }}
+    {{ step.text|linebreaks }}
 </div>
 {% endfor %}
 
 <p>
-  <a href="{% url 'cookbook:new_note' recipe.id %}">add new note</a>
-  <a href="{% url 'cookbook:edit_note' recipe.id %}">edit notes</a>
+    <a href="{% url 'cookbook:new_note' recipe.id %}">add new note</a>
+    <a href="{% url 'cookbook:edit_note' recipe.id %}">edit notes</a>
 </p>
 
 {% for note in notes %}
 <div class="panel-body">
-  {{ note.text|linebreaks }}
+    {{ note.text|linebreaks }}
 </div>
 </div>
 <!-- panel -->

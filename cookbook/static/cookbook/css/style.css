@@ -1,3 +1,5 @@
+/* Landing page styling */
+
 body{
     background-color: #000;
     background-position: center center;
@@ -66,3 +68,4 @@ body{
     font-family: 'Lato';
     src: url('/static/cookbook/fonts/Lato-Hairline.ttf');
 }
+
